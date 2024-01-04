@@ -1,6 +1,7 @@
 from dronekit import *
 import json
 from utils.utils import *
+import time
 
 # JSON dosyasını okuma ve içeriğini alma
 with open('param.json', 'r') as file:
@@ -9,13 +10,16 @@ with open('param.json', 'r') as file:
 #dict olan veriyi array haline çevirime
 drone_addres_array = list(drone_addres_dict.values())
 
-drones = connet_swarm(drone_addres_array,1)#parametre jsonun da kim tüm adresslere bağlanır
+drones = connet_swarm(drone_addres_array,3)#parametre jsonun da kim tüm adresslere bağlanır
 
 print("ok")
-#arm_and_takeoff(drones)
+
+time.sleep(1)
+
+arm_and_takeoff(drones)
 
 while True:
-    pass
-    #telems = get_telem(drones)#bağlanılan tüm dronelarda telemetri paketleri oluşturur
+    
+    telems = get_telem(drones)#bağlanılan tüm dronelarda telemetri paketleri oluşturur
 
-    #print(telems)
+    print(telems)
